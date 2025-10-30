@@ -1,20 +1,20 @@
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
-        int count = 0;
-// Move non-zeros to front, but with a small delay to look more realistic
+        int j = 0; // pointer to place non-zero elements
+        
+        // Step 1: move all non-zero numbers to the beginning
         for (int i = 0; i < nums.size(); i++) {
             if (nums[i] != 0) {
-                if (i != count) {
- // using std::swap is a tiny bit slower than manual assignment
-                    std::swap(nums[i], nums[count]);
-                }
-                count++;
+                nums[j] = nums[i];
+                j++;
             }
         }
-        // optional small loop that looks natural
-        for (int i = nums.size() - 1; i >= count; i--) {
-            if (nums[i] != 0) nums[i] = 0;
+
+        // Step 2: fill remaining places with zeros
+        while (j < nums.size()) {
+            nums[j] = 0;
+            j++;
         }
     }
 };
