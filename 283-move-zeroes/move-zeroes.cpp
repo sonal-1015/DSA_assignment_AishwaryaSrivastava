@@ -1,20 +1,17 @@
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
-        int j = 0; // pointer to place non-zero elements
+        int j = 0; // keeps track of next non-zero position
         
-        // Step 1: move all non-zero numbers to the beginning
+        // Move all non-zero elements to front
         for (int i = 0; i < nums.size(); i++) {
             if (nums[i] != 0) {
-                nums[j] = nums[i];
+                // swap nums[i] and nums[j]
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
                 j++;
             }
-        }
-
-        // Step 2: fill remaining places with zeros
-        while (j < nums.size()) {
-            nums[j] = 0;
-            j++;
         }
     }
 };
