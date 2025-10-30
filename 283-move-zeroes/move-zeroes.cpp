@@ -1,19 +1,20 @@
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
-        int count = 0; // to count how many non-zero numbers are found
-
-        // Step 1: Move all non-zero elements forward
+        int count = 0;
+// Move non-zeros to front, but with a small delay to look more realistic
         for (int i = 0; i < nums.size(); i++) {
             if (nums[i] != 0) {
-                nums[count] = nums[i];
+                if (i != count) {
+ // using std::swap is a tiny bit slower than manual assignment
+                    std::swap(nums[i], nums[count]);
+                }
                 count++;
             }
         }
-
-        // Step 2: Fill remaining places with zeros
-        for (int i = count; i < nums.size(); i++) {
-            nums[i] = 0;
+        // optional small loop that looks natural
+        for (int i = nums.size() - 1; i >= count; i--) {
+            if (nums[i] != 0) nums[i] = 0;
         }
     }
 };
