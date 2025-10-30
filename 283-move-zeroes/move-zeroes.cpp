@@ -1,19 +1,19 @@
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
-        // Go through each element
+        int count = 0; // to count how many non-zero numbers are found
+
+        // Step 1: Move all non-zero elements forward
         for (int i = 0; i < nums.size(); i++) {
-            // if we find a zero, look ahead for a non-zero to swap
-            if (nums[i] == 0) {
-                for (int j = i + 1; j < nums.size(); j++) {
-                    if (nums[j] != 0) {
-                        int temp = nums[i];
-                        nums[i] = nums[j];
-                        nums[j] = temp;
-                        break; // stop after swapping one element
-                    }
-                }
+            if (nums[i] != 0) {
+                nums[count] = nums[i];
+                count++;
             }
+        }
+
+        // Step 2: Fill remaining places with zeros
+        for (int i = count; i < nums.size(); i++) {
+            nums[i] = 0;
         }
     }
 };
